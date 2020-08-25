@@ -1,3 +1,4 @@
+import { ShoppingListService } from './shopping-list.service';
 import { Ingridient } from './../shared/ingridient.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,19 +9,22 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class ShoppingListComponent implements OnInit {
-  ingridients: Ingridient[] = [
-    new Ingridient('Apples', 5),
-    new Ingridient('Tomatoes', 10),
-    new Ingridient('Bean', 7),
-  ];
+  ingridients: Ingridient[];
 
-  constructor() { }
+  constructor(private slService: ShoppingListService) { }
 
   ngOnInit(): void {
+    this.ingridients = this.slService.getIngridients();
+    this.slService.ingridientsChanged
+      .subscribe(
+        (ingridients: Ingridient[]) => {
+          this.ingridients = ingridients;
+        }
+      );
   }
 
-  onIngridientAdded(ingrigient: Ingridient): void{
-    this.ingridients.push(ingrigient);
-  }
+  // onIngridientAdded(ingrigient: Ingridient): void{
+  //   this.ingridients.push(ingrigient);
+  // }
 
 }
