@@ -1,6 +1,7 @@
 import { ShoppingListService } from './shopping-list.service';
 import { Ingridient } from './../shared/ingridient.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list',
@@ -8,19 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListComponent implements OnInit, OnDestroy {
   ingridients: Ingridient[];
+  private subscription: Subscription;
 
   constructor(private slService: ShoppingListService) { }
 
+
   ngOnInit(): void {
     this.ingridients = this.slService.getIngridients();
-    this.slService.ingridientsChanged
+    this.subscription = this.slService.ingridientsChanged
       .subscribe(
         (ingridients: Ingridient[]) => {
           this.ingridients = ingridients;
         }
       );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   // onIngridientAdded(ingrigient: Ingridient): void{

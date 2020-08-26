@@ -1,12 +1,13 @@
 import { Ingridient } from './../shared/ingridient.model';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ShoppingListService {
-  ingridientsChanged = new EventEmitter<Ingridient[]>();
+  ingridientsChanged = new Subject<Ingridient[]>();
 
   constructor() { }
 
@@ -22,13 +23,13 @@ export class ShoppingListService {
 
   addIngridient(ingridient: Ingridient): void{
     this.ingridients.push(ingridient);
-    this.ingridientsChanged.emit(this.ingridients.slice());
+    this.ingridientsChanged.next(this.ingridients.slice());
   }
 
   addIngridients(ingridients: Ingridient[]): void{
     // for(let ingridient of ingridients){
     //   this.addIngridient(ingridient);
-    this.ingridients.push(...ingridients);  // splice operator or split
-    this.ingridientsChanged.emit(this.ingridients.slice());
+    this.ingridients.push(...ingridients);  // spread operator to add array to array
+    this.ingridientsChanged.next(this.ingridients.slice());
     }
 }
