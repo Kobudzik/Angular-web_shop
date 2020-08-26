@@ -1,13 +1,18 @@
-<div class="row" style="border:2px solid blue">    <p style="Color:blue"> shopping-list-component</p>
+<div class="row" style="border:2px solid blue">
+    <p style="Color:blue"> shopping-list-component</p>
 
     <div class="col-xs-10">
+        <!-- edit component -->
         <app-shopping-edit></app-shopping-edit>
         <hr>
+
+        <!-- shopping cart -->
         <ul class="list-group">
             <a 
-            class="list-group-item"
-            style="cursor:pointer"
-            *ngFor="let ingridient of ingridients">
+                class="list-group-item"
+                style="cursor:pointer"
+                *ngFor="let ingridient of ingridients"
+            >
             {{ingridient.name}}({{ingridient.amount}})
             </a>
         </ul>  

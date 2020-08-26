@@ -1,9 +1,12 @@
 <div class="row" style="border:2px solid blue">
     <p style="Color:blue"> shopping-edit-component</p>
+
+    <!-- FORM -->
     <div class="col-xs-12">
         <form>
             <div class="row">
                 <div class="col-sm-5 form-group">
+                    <!-- name -->
                     <label for="name">Name</label>
                     <input
                         type="text"
@@ -12,6 +15,7 @@
                         #nameInput>
                 </div>
                 <div class="col-sm-2 form-group">
+                    <!-- amount -->
                     <label for="amount">Amount</label>
                     <input
                         type="number" 
@@ -21,6 +25,7 @@
                 </div>
           </div>
           <div class="row">
+              <!-- buttons -->
               <div class="col-xs-12">
                   <button class="btn btn-success" type="submit" (click)="onAddItem()">Add</button>
                   <button class="btn btn-danger" type="button">Delete</button>

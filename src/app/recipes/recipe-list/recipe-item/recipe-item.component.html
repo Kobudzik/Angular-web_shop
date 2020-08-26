@@ -1,12 +1,18 @@
 <a 
-    href="#" 
+    style="cursor: pointer;"
     class="list-group-item clearfix"
-    (click)="onSelected()">
+    [routerLink]= "[index]"
+    routerLinkActive= "activeng"
+>
+    
+    <!-- name, description -->
     <div class="pull-left">
         <p style="Color:blue"> Recipe-item-component</p>
         <h4 class="list-group-heading">{{recipe.name}}</h4>
         <p class= "list-group-item-text">{{recipe.description}}</p>
     </div>
+
+    <!-- image -->
     <span class='pull-right'>
         <img
             src="{{recipe.imagePath}}"
