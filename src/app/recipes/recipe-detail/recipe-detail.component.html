@@ -1,3 +1,4 @@
+<!-- IMAGE -->
 <div class="row">
     <p style="Color:blue"> Recipe-detail-component</p>
 
@@ -10,35 +11,39 @@
     </div>
 </div>
 
+<!-- NAME -->
 <div class="row">
     <div class="col-xs-12">
         <h1>{{recipe.name}}</h1>
     </div>
 </div>
+
+<!-- dropdown -->
 <div class="row">
     <div class="col-xs-12">
-        <div class="btn-group"
-        appDropdown>
+        <div class="btn-group" appDropdown>
             <button
                 type="button"
                 class="btn btn-primary dropdown-toggle">
                 Manage Recipe <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li>
-                    <a (click)="onAddToShoppingList()">To shopping lsit</a>
-                    <a href="#">Edit Recipe</a>
-                    <a href="#">Delete Recipe</a>
-                </li>
+                <li><a (click)="onAddToShoppingList()" style="cursor:pointer">To shopping lsit</a></li>   
+                <li><a style="cursor:pointer" (click)="onEditRecipe()">Edit Recipe</a></li>
+                <li><a style="cursor:pointer">Delete Recipe</a> </li>
             </ul>
         </div>
     </div>
 </div> 
+
+<!-- recipe description -->
 <div class="row">
     <div class="col-xs-12">
         {{recipe.description}}
     </div>
 </div>
+
+<!-- list of ingridients -->
 <div class="row">
     <div class="col-xs-12">
         <ul class="list-group">
