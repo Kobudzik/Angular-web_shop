@@ -1,6 +1,8 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "no-string-literal": false    ,
+
     "align": {
       "options": [
         "parameters",
@@ -73,8 +75,7 @@
     "no-switch-case-fall-through": true,
     "no-var-requires": false,
     "object-literal-key-quotes": [
-      true,
-      "as-needed"
+  false
     ],
     "quotemark": [
       true,
@@ -95,7 +96,7 @@
       }
     },
     "typedef": [
-      true,
+      false,
       "call-signature"
     ],
     "typedef-whitespace": {

@@ -1,5 +1,5 @@
 import { ShoppingListService } from './shopping-list.service';
-import { Ingridient } from './../shared/ingridient.model';
+import { Ingredient } from './../shared/ingredient.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -10,18 +10,18 @@ import { Subscription } from 'rxjs';
   ]
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  ingridients: Ingridient[];
+  ingredients: Ingredient[];
   private subscription: Subscription;
 
   constructor(private slService: ShoppingListService) { }
 
 
   ngOnInit(): void {
-    this.ingridients = this.slService.getIngridients();
+    this.ingredients = this.slService.getIngridients();
     this.subscription = this.slService.ingridientsChanged
       .subscribe(
-        (ingridients: Ingridient[]) => {
-          this.ingridients = ingridients;
+        (ingredients: Ingredient[]) => {
+          this.ingredients = ingredients;
         }
       );
   }
@@ -30,8 +30,12 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  // onIngridientAdded(ingrigient: Ingridient): void{
-  //   this.ingridients.push(ingrigient);
+  onEditItem(index: number): void{
+    this.slService.startedEditing.next(index);
+  }
+
+  // onIngridientAdded(ingrigient: ingredient): void{
+  //   this.ingredients.push(ingrigient);
   // }
 
 }
