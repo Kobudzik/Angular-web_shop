@@ -1,24 +1,24 @@
-import { Ingridient } from './../shared/ingridient.model';
+import { Ingredient } from './../shared/ingredient.model';
 export class Recipe{
     // public name: string;
     // public description: string;
     // public imagePath: string;
-    // public ingridients: Ingridient[];
+    // public ingredients: ingredient[];
 
 
-    // constructor(name: string, desc: string, imagePath: string, ingridients: Ingridient[]) {
+    // constructor(name: string, desc: string, imagePath: string, ingredients: ingredient[]) {
     //     this.name = name;
     //     this.description = desc;
     //     this.imagePath = imagePath;
-    //     this.ingridients= ingridients;
+    //     this.ingredients= ingredients;
     // }
 
     // public name: string;
     // public description: string;
     // public imagePath: string;
-    // public ingridients: Ingridient[];
+    // public ingredients: ingredient[];
 
 
-    constructor(public name: string, public description: string, public imagePath: string, public ingridients: Ingridient[]) {}
+    constructor(public name: string, public description: string, public imagePath: string, public ingredients: Ingredient[]) {}
 }
 
