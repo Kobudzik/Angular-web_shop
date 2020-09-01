@@ -12,25 +12,29 @@ export class RecipeService {
   constructor(private slService: ShoppingListService) { }
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'A test recipe', 'This is simply a test',
-      'https://www.telegraph.co.uk/content/dam/food-and-drink/2019/01/11/TELEMMGLPICT000185036503_trans_NvBQzQNjv4BqodXSHHE-j78vyZ0iwRUmY_nuzprQ_mxVCWqrJBTJk3A.jpeg',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('Onion', 7),
-        new Ingredient('Lime', 2)
-      ]),
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     'A test recipe', 'This is simply a test',
+  // tslint:disable-next-line: max-line-length
+  //     'https://www.telegraph.co.uk/content/dam/food-and-drink/2019/01/11/TELEMMGLPICT000185036503_trans_NvBQzQNjv4BqodXSHHE-j78vyZ0iwRUmY_nuzprQ_mxVCWqrJBTJk3A.jpeg',
+  //     [
+  //       new Ingredient('Meat', 1),
+  //       new Ingredient('Onion', 7),
+  //       new Ingredient('Lime', 2)
+  //     ]),
 
-    new Recipe(
-      'A test recipe2', 'This is simply a test2',
-      'https://www.telegraph.co.uk/content/dam/food-and-drink/2019/01/11/TELEMMGLPICT000185036503_trans_NvBQzQNjv4BqodXSHHE-j78vyZ0iwRUmY_nuzprQ_mxVCWqrJBTJk3A.jpeg',
-      [
-        new Ingredient('Meat', 22),
-        new Ingredient('Onion', 27),
-        new Ingredient('Lime', 22)
-      ]),
-  ];
+  //   new Recipe(
+  //     'A test recipe2', 'This is simply a test2',
+  // tslint:disable-next-line: max-line-length
+  //     'https://www.telegraph.co.uk/content/dam/food-and-drink/2019/01/11/TELEMMGLPICT000185036503_trans_NvBQzQNjv4BqodXSHHE-j78vyZ0iwRUmY_nuzprQ_mxVCWqrJBTJk3A.jpeg',
+  //     [
+  //       new Ingredient('Meat', 22),
+  //       new Ingredient('Onion', 27),
+  //       new Ingredient('Lime', 22)
+  //     ]),
+  // ];
+
+  private recipes: Recipe[] = [];
 
   getRecipes(): Recipe[]{
     return this.recipes.slice();
@@ -60,4 +64,9 @@ export class RecipeService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
+
+  setRecipes(recipes: Recipe[]){
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
 }
