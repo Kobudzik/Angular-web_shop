@@ -1,3 +1,4 @@
+import { AuthEffects } from './auth/store/auth.effects';
 import { SharedModule } from './shared/shared.module';
 import { AutInterceptorService } from './auth/auth-interceptor.service';
 import { RecipeService } from './recipes/recipe.service';
@@ -10,6 +11,8 @@ import { ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import * as fromApp from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,8 @@ import * as fromApp from './store/app.reducer';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    StoreModule.forRoot(fromApp.appReducer)
+    StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
     RecipeService,
