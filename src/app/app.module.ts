@@ -1,7 +1,6 @@
 import { SharedModule } from './shared/shared.module';
 import { AutInterceptorService } from './auth/auth-interceptor.service';
 import { RecipeService } from './recipes/recipe.service';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { HeaderComponent } from './header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,7 +9,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { ShoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+import * as fromApp from './store/app.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,10 +21,9 @@ import { ShoppingListReducer } from './shopping-list/store/shopping-list.reducer
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    StoreModule.forRoot({shoppingList: ShoppingListReducer})
+    StoreModule.forRoot(fromApp.appReducer)
   ],
   providers: [
-    ShoppingListService,
     RecipeService,
     { provide: HTTP_INTERCEPTORS, useClass: AutInterceptorService, multi: true }
   ],
