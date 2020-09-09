@@ -1,4 +1,4 @@
-import * as AuthActions from './store/auth.actions';
+import * as AuthActions from './../store/auth.actions';
 import { Router } from '@angular/router';
 import { User } from './user.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -73,26 +73,25 @@ export class AuthService{
     }
 
     login(email: string, password: string){
-        return this.http
-            .post<AuthResponseData>(
-                'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA7-8b6394O1pIKtG_mJ6gSrRh-ZsHd4KM',
-                {
-                    email: email,
-                    password: password,
-                    returnSecureToken: true
-                }
-            )
-            .pipe(
-                catchError(this.handleError),
-                tap(responseData => {
-                    this.handleAuthentication(
-                        responseData.email,
-                        responseData.localId,
-                        responseData.idToken,
-                        +responseData.expiresIn
-                    );
-                })
-            );
+        return this.http.post<AuthResponseData>(
+            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA7-8b6394O1pIKtG_mJ6gSrRh-ZsHd4KM',
+            {
+                email: email,
+                password: password,
+                returnSecureToken: true
+            }
+        )
+        .pipe(
+            catchError(this.handleError),
+            tap(responseData => {
+                this.handleAuthentication(
+                    responseData.email,
+                    responseData.localId,
+                    responseData.idToken,
+                    +responseData.expiresIn
+                );
+            })
+        );
 
     }
 
