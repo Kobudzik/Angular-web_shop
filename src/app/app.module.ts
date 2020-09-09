@@ -1,7 +1,8 @@
+import { RecipeEffects } from './recipes/store/recipe.effects';
+import { environment } from '../environments/environment';
 import { AuthEffects } from './auth/store/auth.effects';
 import { SharedModule } from './shared/shared.module';
 import { AutInterceptorService } from './auth/auth-interceptor.service';
-import { RecipeService } from './recipes/recipe.service';
 import { HeaderComponent } from './header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import * as fromApp from './store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -25,10 +28,11 @@ import { EffectsModule } from '@ngrx/effects';
     HttpClientModule,
     SharedModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects, RecipeEffects]),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [
-    RecipeService,
     { provide: HTTP_INTERCEPTORS, useClass: AutInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
